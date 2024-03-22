@@ -1,6 +1,7 @@
 package com.jyx.netty.parse;
 
 import com.jyx.netty.command.Command;
+import com.jyx.netty.command.CommandBuilder;
 import com.jyx.netty.command.CommandFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -16,13 +17,13 @@ import org.springframework.stereotype.Component;
 public class Parser implements Parse<Command, String> {
 
     public Parser(CommandFactory commandFactory) {
-        this.commandFactory = commandFactory;
+        this.commandBuilder = commandFactory;
     }
 
-    private CommandFactory commandFactory;
+    private CommandBuilder commandBuilder;
 
     @Override
     public synchronized Command parse(String message) {
-        return commandFactory.createUpriver(message);
+        return commandBuilder.createUpriver(message);
     }
 }
