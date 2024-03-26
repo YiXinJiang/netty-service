@@ -1,5 +1,6 @@
 package com.jyx.netty;
 
+import com.jyx.netty.domain.DistributeControl;
 import com.jyx.netty.service.MyService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +15,7 @@ class SpringNettyApplicationTests {
 
     @Test
     void contextLoads() {
-        myService.distribute();
+        myService.distribute(DistributeControl.builder().build());
     }
 
 }

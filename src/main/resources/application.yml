@@ -1,0 +1,17 @@
+nacos-server: 192.168.1.61:8848
+spring:
+  application:
+    name: service-netty2
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${nacos-server}
+        enabled: true
+      config:
+        server-addr: ${nacos-server}
+        file-extension: yaml
+        import: nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}
+        enabled: true
+
+server:
+  port: 8103

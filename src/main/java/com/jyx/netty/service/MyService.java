@@ -1,6 +1,7 @@
 package com.jyx.netty.service;
 
 import com.jyx.netty.command.domain.ReportParkLockStatus;
+import com.jyx.netty.domain.DistributeControl;
 
 /**
  * @InterfaceName: MyService
@@ -12,6 +13,8 @@ public interface MyService {
 
     String process(ReportParkLockStatus status);
 
-    void distribute();
+    void distribute(DistributeControl distributeControl);
+
+    void distribute(String commandCode);
 
 }

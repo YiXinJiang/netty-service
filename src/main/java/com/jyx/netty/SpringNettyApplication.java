@@ -4,8 +4,10 @@ import com.jyx.netty.server.BootNettyServer;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.scheduling.annotation.Async;
 
+@EnableDiscoveryClient
 @SpringBootApplication
 public class SpringNettyApplication implements CommandLineRunner {
 
@@ -19,7 +21,7 @@ public class SpringNettyApplication implements CommandLineRunner {
         /*
          * 异步启动netty服务端服务
          */
-        new BootNettyServer().bind(8888);
+        new BootNettyServer().bind(8889);
     }
 
 }

@@ -1,8 +1,8 @@
 package com.jyx.netty;
 
+import com.jyx.netty.domain.DistributeControl;
 import com.jyx.netty.service.MyService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -18,9 +18,17 @@ public class TestController {
     @Resource
     private MyService myService;
 
-    @GetMapping("distribute")
-    public void distribute() {
-        myService.distribute();
+    @PostMapping("distribute")
+    public String distribute(@RequestBody DistributeControl distributeControl) {
+        myService.distribute(distributeControl);
+        return "accept command by post";
     }
+
+    @GetMapping("distribute/{commandCode}")
+    public String distribute(@PathVariable String commandCode) {
+        myService.distribute(commandCode);
+        return "accept command by get";
+    }
+
 
 }

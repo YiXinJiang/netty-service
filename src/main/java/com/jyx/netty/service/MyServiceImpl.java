@@ -2,6 +2,7 @@ package com.jyx.netty.service;
 
 import com.jyx.netty.command.DistributeCarrier;
 import com.jyx.netty.command.domain.ReportParkLockStatus;
+import com.jyx.netty.domain.DistributeControl;
 import com.jyx.netty.enums.DownriverCategory;
 import com.jyx.netty.enums.DownriverParam;
 import com.jyx.netty.event.domain.DistributeEvent;
@@ -31,7 +32,7 @@ public class MyServiceImpl implements MyService {
     }
 
     @Override
-    public void distribute() {
+    public void distribute(DistributeControl distributeControl) {
         DistributeCarrier carrier = DistributeCarrier.builder()
                 .address("ADADAD")
                 .category(DownriverCategory.query)
@@ -40,4 +41,16 @@ public class MyServiceImpl implements MyService {
         DistributeEvent distributeEvent = new DistributeEvent(this, carrier);
         publisher.publishEvent(distributeEvent);
     }
+
+    @Override
+    public void distribute(String commandCode) {
+        DistributeCarrier carrier = DistributeCarrier.builder()
+                .address("ADADAD")
+                .category(DownriverCategory.query)
+                .param(DownriverParam.query.value()).build();
+        log.info("will distribute command: {}", carrier);
+        DistributeEvent distributeEvent = new DistributeEvent(this, carrier);
+        publisher.publishEvent(distributeEvent);
+    }
+
 }
